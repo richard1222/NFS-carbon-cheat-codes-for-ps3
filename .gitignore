@@ -1,0 +1,7 @@
+__pycache__/
+*.pyc
+*.bak
+*.tmp
+# never commit anything that might carry console identifiers
+mem_dump.bin
+*.dump
