@@ -1,3 +1,8 @@
+﻿![Platform](https://img.shields.io/badge/Platform-PS3-blue)
+![Region](https://img.shields.io/badge/Region-USA-green)
+![Title%20ID](https://img.shields.io/badge/Title%20ID-BLUS30016-orange)
+![Version](https://img.shields.io/badge/Version-01.00-yellow)
+![Status](https://img.shields.io/badge/Status-Active%20Research-yellow)
 # Need for Speed: Carbon — PS3 cheats (USA, `BLUS30016`)
 
 Runtime cheat codes for **Need for Speed: Carbon** on the **USA** PS3 disc.
@@ -8,6 +13,23 @@ directly off the console, not assumed.
 > **Do not use the Europe (`BLES00020`) addresses.** They are different. The
 > money and nitro code addresses differ between regions, so the two sets are not
 > interchangeable.
+
+---
+
+---
+
+## Table of Contents
+
+- [Verified on Hardware](#verified-on-hardware)
+- [Infinite Nitro](#infinite-nitro--the-verified-one)
+- [Infinite Bullet Time](#infinite-bullet-time--not-yet-tested)
+- [Lot + Infinite Money](#lot--infinite-money--the-upstream-value-appears-to-be-wrong)
+- [How to Apply](#how-to-apply-these)
+- [PS3MAPI Gotchas](#ps3mapi-gotchas)
+- [What Counts as Verified](#what-verified-means-here-and-history-so-far)
+- [Sources](#where-everything-came-from)
+- [Files](#files)
+- [Requirements](#requirements)
 
 ---
 
@@ -217,6 +239,26 @@ being marked verified. See `SOURCES.md`.
 
 ---
 
+
+---
+
+## Progress Chart
+
+`
+Task Progress
+─────────────────────────────────────────────────────
+
+Cheat Research         ████████████████████ 100% ✅
+Infinite Nitro         ████████████████████ 100% ✅ (verified)
+Infinite Bullet Time   ████████░░░░░░░░░░░░  40% 🔄 (untested)
+Lot + Infinite Money   ████████░░░░░░░░░░░░  40% 🔄 (wrong value found)
+Build Verification     ████████████████████ 100% ✅ (BLUS30016 01.00)
+Tool Development       ████████████████████ 100% ✅ (carbon_mem.ps1)
+Verification           ████████████████████ 100% ✅ (verify_mem_tool.py)
+
+Legend: ✅ Done  🔄 In Progress  ⏳ Pending
+`
+
 ## Files
 
 | path | what it is |
@@ -235,6 +277,17 @@ nothing else would catch it.
 
 ---
 
+
+---
+
+## Resources
+
+- [ArtemisPS3 Codelist](https://github.com/bucanero/ArtemisPS3) - Source of original codes
+- [PS3MAPI Documentation](https://github.com/bucanero/ps3mapi) - Memory access API
+- [webMAN MOD](https://github.com/aldostools/webMAN-MOD) - Console management
+- [SHC Cheats for PS3](https://github.com/richard1222/SHC-cheats-for-ps3) - Similar project
+- [SpongeBob BBFB PS2 Cheats](https://github.com/richard1222/Spongebob-SquarePants-BBFB-PS2-Cheats-Codes) - PS2 cheat research
+
 ## Requirements
 
 - A PS3 running **CFW** with **webMAN MOD** (the PS3MAPI endpoints)
@@ -245,3 +298,4 @@ nothing else would catch it.
 
 Codes by **jgduff1**. Repackaged here with the region confirmed and the
 verification status recorded. No game data is included or distributed.
+
