@@ -1,8 +1,13 @@
-# Need for Speed: Carbon — PS3 cheats (USA, `BLUS30016`)
+﻿![Platform](https://img.shields.io/badge/Platform-PS3-blue)
+![Region](https://img.shields.io/badge/Region-USA-green)
+![Title%20ID](https://img.shields.io/badge/Title%20ID-BLUS30016-orange)
+![Version](https://img.shields.io/badge/Version-01.00-yellow)
+![Status](https://img.shields.io/badge/Status-Active%20Research-yellow)
+# Need for Speed: Carbon â€” PS3 cheats (USA, `BLUS30016`)
 
 Runtime cheat codes for **Need for Speed: Carbon** on the **USA** PS3 disc.
 
-**Target:** `BLUS30016`, app **`01.00`** — confirmed by reading `PARAM.SFO`
+**Target:** `BLUS30016`, app **`01.00`** â€” confirmed by reading `PARAM.SFO`
 directly off the console, not assumed.
 
 > **Do not use the Europe (`BLES00020`) addresses.** They are different. The
@@ -21,13 +26,13 @@ not "the tool said success".
 |---|---|---|---|
 | **Infinite Nitro** | **yes** | **yes** | gauge stops draining when used, in a live race |
 | Infinite Bullet Time | not yet | not yet | value looks correct; untested |
-| Lot + Infinite Money | yes | **no** | see the warning below — the upstream value is wrong |
+| Lot + Infinite Money | yes | **no** | see the warning below â€” the upstream value is wrong |
 
 **One cheat is verified. Two are not.**
 
 ---
 
-## Infinite Nitro — the verified one
+## Infinite Nitro â€” the verified one
 
 ```
 ASM Infinite Nitro
@@ -35,7 +40,7 @@ ASM Infinite Nitro
 ```
 
 **What it does.** The game's own instruction at `00462CC0` is `D01F0120`, which
-is `stfs f0, 0x120(r31)` — *store the drained nitro value back*. Replacing it
+is `stfs f0, 0x120(r31)` â€” *store the drained nitro value back*. Replacing it
 with `60000000` (a `nop`) removes that store.
 
 Here is that exact spot in the game's code, read live from the console:
@@ -60,7 +65,7 @@ stops falling.
 
 ---
 
-## Infinite Bullet Time — not yet tested
+## Infinite Bullet Time â€” not yet tested
 
 ```
 ASM Infinite Bullet Time
@@ -82,7 +87,7 @@ places, so all three are `nop`-ed. Read live from the console:
 005015C8  D01F0088   stfs f0, 0x88(r31)   <-- nop'd
 ```
 
-Every one of those is a `stfs` into the same offset, `0x88(r31)` — a repeated
+Every one of those is a `stfs` into the same offset, `0x88(r31)` â€” a repeated
 store of the bullet-time gauge. The code covers all three sites, which is what
 it should do.
 
@@ -91,7 +96,7 @@ applied. "Looks correct" is not evidence.
 
 ---
 
-## ⚠ Lot + Infinite Money — the upstream value appears to be wrong
+## âš  Lot + Infinite Money â€” the upstream value appears to be wrong
 
 ```
 ASM Lot + Infinite Money
@@ -101,7 +106,7 @@ ASM Lot + Infinite Money
 **Do not treat this as a working cheat.** The address is correct; the *value* is
 not.
 
-The address `0013CDEC` really does sit inside the game's money routine — read
+The address `0013CDEC` really does sit inside the game's money routine â€” read
 live from the console:
 
 ```
@@ -116,19 +121,19 @@ But compare the code against the real instruction:
 
 | | instruction | meaning |
 |---|---|---|
-| the game has | `93C30058` | `stw r30, 0x58(r3)` — store the computed money |
-| the code writes | `91630058` | `stw r10, 0x58(r3)` — store some **other** register |
+| the game has | `93C30058` | `stw r30, 0x58(r3)` â€” store the computed money |
+| the code writes | `91630058` | `stw r10, 0x58(r3)` â€” store some **other** register |
 
 That is not "money stops decreasing". It is a **different instruction** that
 stores whatever happens to be in `r10` into the balance field.
 
 **What happened when it was tried:** the write was applied, nothing observable
-changed in game, and the game then froze. That is consistent with the above —
+changed in game, and the game then froze. That is consistent with the above â€”
 this is the one code of the three that writes a *wrong* instruction into live
 code. Nitro and bullet time both remove a store; neither does this.
 
 Note also that the address read `93C30058` **both before and after** the write
-attempt, including after a reboot — the change was not in effect.
+attempt, including after a reboot â€” the change was not in effect.
 
 **A more plausible value** would be `60000000`, matching the other two codes.
 That is a **guess**, and it is **untested**. Do not record it as working.
@@ -137,7 +142,7 @@ That is a **guess**, and it is **untested**. Do not record it as working.
 
 ## How to apply these
 
-Runtime codes here go in over **webMAN MOD's PS3MAPI** web interface — a plain
+Runtime codes here go in over **webMAN MOD's PS3MAPI** web interface â€” a plain
 HTTP memory write. No Artemis, no cheat engine, no file installed.
 
 ### With the tool
@@ -173,10 +178,10 @@ have it.** That is not a typo.
 ### PS3MAPI gotchas
 
 - `len=` per read is capped at **256 bytes**
-- the server is **single-threaded** — parallel requests drop
+- the server is **single-threaded** â€” parallel requests drop
 - the PS3 is **big-endian**
 - `pid=` changes every launch; get it from the PS3MAPI process list
-- after a write, **verify by reading back** — a write can silently not land
+- after a write, **verify by reading back** â€” a write can silently not land
 
 ---
 
@@ -188,7 +193,7 @@ numbers that do not work:
 | result | counts? |
 |---|---|
 | applied on console, effect seen in game | **yes** |
-| applied on console, game froze or crashed | **yes — a real finding** |
+| applied on console, game froze or crashed | **yes â€” a real finding** |
 | "the address looks right" | **no** |
 | checked in an emulator | **no** |
 | tool printed "success" | **no** |
@@ -196,7 +201,7 @@ numbers that do not work:
 Two findings came out of doing this honestly:
 
 1. **Nitro works.** First verified code for this title.
-2. **The money code's upstream value is wrong** — established by reading the
+2. **The money code's upstream value is wrong** â€” established by reading the
    game's actual instruction and comparing it, not by guessing.
 
 That second one would have stayed hidden if the money code had simply been
@@ -209,13 +214,33 @@ that it explains a freeze that was otherwise unexplained.
 
 The three codes are from **jgduff1**, via Aldo's PS3 Artemis codelist database
 (mirrored in `bucanero/ArtemisPS3`, `docs/codes/`). The values are unchanged
-from upstream — including the money value that turned out to be wrong. Nothing
+from upstream â€” including the money value that turned out to be wrong. Nothing
 is invented here.
 
 The addresses were **checked against the live game** on a real console before
 being marked verified. See `SOURCES.md`.
 
 ---
+
+
+---
+
+## Progress Chart
+
+`
+Task Progress
+─────────────────────────────────────────────────────
+
+Cheat Research         ████████████████████ 100% ✅
+Infinite Nitro         ████████████████████ 100% ✅ (verified)
+Infinite Bullet Time   ████████░░░░░░░░░░░░  40% 🔄 (untested)
+Lot + Infinite Money   ████████░░░░░░░░░░░░  40% 🔄 (wrong value found)
+Build Verification     ████████████████████ 100% ✅ (BLUS30016 01.00)
+Tool Development       ████████████████████ 100% ✅ (carbon_mem.ps1)
+Verification           ████████████████████ 100% ✅ (verify_mem_tool.py)
+
+Legend: ✅ Done  🔄 In Progress  ⏳ Pending
+`
 
 ## Files
 
@@ -235,13 +260,24 @@ nothing else would catch it.
 
 ---
 
+
+---
+
+## Resources
+
+- [ArtemisPS3 Codelist](https://github.com/bucanero/ArtemisPS3) - Source of original codes
+- [PS3MAPI Documentation](https://github.com/bucanero/ps3mapi) - Memory access API
+- [webMAN MOD](https://github.com/aldostools/webMAN-MOD) - Console management
+- [Drakengard 3 Cheats](https://github.com/richard1222/PS3-Drakengard-3-cheats) - Similar project
+
 ## Requirements
 
 - A PS3 running **CFW** with **webMAN MOD** (the PS3MAPI endpoints)
 - The **USA** disc, serial `BLUS30016`, app `01.00`
-- The game running — runtime codes do nothing until it is
+- The game running â€” runtime codes do nothing until it is
 
 ## Licence / credit
 
 Codes by **jgduff1**. Repackaged here with the region confirmed and the
 verification status recorded. No game data is included or distributed.
+
